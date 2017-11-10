@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+
+      <p id="notice"><%= notice %></p>
+      <h1>Products</h1>
+      <div class="text-right">
+        <%= link_to "Nuevo Producto", new_product_path, class: "btn btn-primary" %>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Categorias</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @products.each do |product| %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= product.price %></td>
+            <td><%= product.categories.pluck(:name).join(",")  %>
+
+            </td>
+            <td><%= link_to 'Editar', edit_product_path(product) %>
+              <%= link_to 'Eliminar', product, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

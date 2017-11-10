@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h2><%= form_title %></h2>
+      <%= form_for @product do |f| %>
+      <div class="form-group">
+        <%= f.text_field :name, class: "form-control input-lg" , placeholder: "Producto" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.number_field :price, class: "form-control input-lg" , placeholder: "Precio" %>
+      </div>
+
+      <% Category.all.each do |category| %>
+
+      <div class="form-group">
+        <%= check_box_tag 'product[category_ids][]', category.id %>
+        <%= label_tag(:category, category.name) %>
+
+      </div>
+      <% end %>
+      <div class="form-group">
+        <%= f.submit form_title, class: "btn btn-primary btn-lg btn-block" %>
+      </div>
+
+
+      <% end %>
+    </div>
+  </div>
+</div>
